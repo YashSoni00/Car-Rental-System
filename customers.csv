@@ -1,0 +1,6 @@
+"customer_id","name","address","phone_number","email"
+"1","John Doe","123 Controller.Main St","123-456-7890","johndoe@gmail.com"
+"2","Jane Smith","456 Elm St","456-789-0123","janesmith@gmail.com"
+"3","Tom Brown","789 Oak St","789-012-3456","tombrown@gmail.com"
+"4","Sue White","101 Pine St","101-112-1314","suewhite@gmail.com"
+"5","Mike Black","202 Cedar St","202-303-4041","mikeblack@gmail.com"
