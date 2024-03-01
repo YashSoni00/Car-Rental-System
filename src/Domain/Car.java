@@ -1,5 +1,7 @@
 package Domain;
 
+import DataAccess.DataBase;
+
 public class Car {
     private final String carID;
     private final String make;
@@ -16,6 +18,16 @@ public class Car {
         this.isRented = false;
         this.pricePerDay = pricePerDay;
     }
+
+    public static String getCarDetails(String s) {
+        for (String[] car : DataBase.cars) {
+            if (car[0].equals(s)) {
+                return car[0] + ", Make: " + car[1] + ", Model " + car[2];
+            }
+        }
+        return null;
+    }
+
     public String getMake() {
         return make;
     }
@@ -50,8 +62,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Make: " + make + ", Model " + model + ", Year " + year + ", Price per day: " + pricePerDay +
-                ", Rented: " + isRented;
+        return "ID: " + carID + ", Make: " + make + ", Model " + model + ", Year " + year + ", Price per day: " + pricePerDay;
     }
 
     public String getId() {

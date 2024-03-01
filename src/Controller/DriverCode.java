@@ -1,5 +1,6 @@
 package Controller;
 
+import DataAccess.DataBase;
 import Service.RentalService;
 
 import java.text.ParseException;
@@ -11,13 +12,23 @@ import java.util.Scanner;
 public class DriverCode {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) throws ParseException {
+        // Setup the database
+        DataBase db = new DataBase();
+
+        // Call the menu method
         menu();
+
+        // Save the data to the CSV file
+        DataBase.writeData("cars.csv", DataBase.cars);
+        DataBase.writeData("customers.csv", DataBase.customers);
+        DataBase.writeData("rental_history.csv", DataBase.rentalHistory);
+
     }
 
     private static void menu() throws ParseException {
         int ch;
         do {
-            System.out.println("Welcome to Car Rental Service!");
+            System.out.println("\n--- Main Menu ---");
             System.out.println("1. Rent a car");
             System.out.println("2. Return a car");
             System.out.println("3. Admin login");
@@ -45,19 +56,19 @@ public class DriverCode {
     }
 
     private static void adminLogin() {
-        System.out.println("Admin login");
-//        System.out.print("Enter username: ");
-//        String username = scanner.next();
-//        System.out.print("Enter password: ");
-//        String password = scanner.next();
-//
-//        // Call the service method to authenticate the admin
-//        RentalService rentalService = new RentalService();
-//        if (rentalService.authenticateAdmin(username, password)) {
+        System.out.println("\n--- Admin Login ---");
+        System.out.print("Enter username: ");
+        String username = scanner.next();
+        System.out.print("Enter password: ");
+        String password = scanner.next();
+
+        // Call the service method to authenticate the admin
+        RentalService rentalService = new RentalService();
+        if (rentalService.authenticateAdmin(username, password)) {
             adminMenu();
-//        } else {
-//            System.out.println("Invalid username or password");
-//        }
+        } else {
+            System.out.println("Invalid username or password");
+        }
     }
 
     private static void adminMenu() {
@@ -124,7 +135,7 @@ public class DriverCode {
         String carMake = scanner.next();
         System.out.print("Enter car model: ");
         String carModel = scanner.next();
-        System.out.println("Enter car year: ");
+        System.out.print("Enter car year: ");
         int carYear = scanner.nextInt();
         System.out.print("Enter car price: ");
         double carPrice = scanner.nextDouble();
@@ -138,12 +149,24 @@ public class DriverCode {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         System.out.println("Rent a car");
-        rentalService.showAllCars();
-        System.out.print("Enter the car ID: ");
-        String carId = scanner.next();
         System.out.print("Enter your customer ID: ");
         String customerId = scanner.next();
+
+        // Check if the customer ID is registered in the database or not
+        rentalService.validateCustomer(customerId);
+
+        // Show the list of available cars
+        rentalService.showAvailableCars();
+
+        System.out.print("Enter the car ID: ");
+        String carId = scanner.next();
+
+        // Check if the car ID is valid or not
+        if (!rentalService.validateCar(carId)) {
+            return;
+        }
         System.out.print("Enter start date (yyyy-MM-dd): ");
+        // TODO: Keep only the date part and ignore the time part
         Date startDate = sdf.parse(scanner.next());
         System.out.print("Enter return date (yyyy-MM-dd): ");
         Date returnDate = sdf.parse(scanner.next());
@@ -155,10 +178,21 @@ public class DriverCode {
     private static void returnCar() {
         RentalService rentalService = new RentalService();
         System.out.println("Return a car");
+        System.out.print("Enter your customer ID to return a car: ");
+        String customerId = scanner.next();
+
+        // Check if the customer ID is registered in the database or not
+        if (!rentalService.validateCustomer(customerId)) {
+            return;
+        }
+
+        // Show the list of cars rented by the customer
+        if (!rentalService.showRentedCars(customerId)) {
+            return;
+        }
+
         System.out.print("Enter the car ID: ");
         String carId = scanner.next();
-        System.out.print("Enter your customer ID: ");
-        String customerId = scanner.next();
 
         // Call the service method to return a car
         rentalService.returnCar(carId, customerId);

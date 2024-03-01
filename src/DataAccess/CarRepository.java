@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CarRepository {
+//    public CarRepository() {
+//        DataBase carsData = new DataBase();
+//    }
 
     // Method to add a new car to the database
     public void addCar(String carId, String make, String model, int year, double pricePerDay) {
@@ -26,7 +29,7 @@ public class CarRepository {
         Car car = getCarById(carId);
         if (car != null) {
             car.setRented(b);
-            DataBase.updateCarData(car);
+            DataBase.updateCarData(car, b);
         }
     }
 
@@ -47,11 +50,8 @@ public class CarRepository {
 
     // Method to list all cars in the database
     public void getAllCars() {
-        DataBase carsData = new DataBase();
         // Print the list of cars
-        for (String[] car : DataBase.cars) {
-            System.out.println(Arrays.toString(car));
-        }
+        for (String[] car : DataBase.cars) System.out.println(Arrays.toString(car));
     }
 
     public static void main(String[] args) {
@@ -59,4 +59,16 @@ public class CarRepository {
         carRepository.getAllCars();
     }
 
+    public void getAllAvailableCars() {
+        List<Car> availableCars = new ArrayList<>();
+        for (String[] car : DataBase.cars) {
+            if (!Boolean.parseBoolean(car[5])) {
+                availableCars.add(new Car(car[0], car[1], car[2], Integer.parseInt(car[3]),
+                        Double.parseDouble(car[4]), Boolean.parseBoolean(car[5])));
+            }
+        }
+        for (Car car : availableCars) {
+            System.out.println(car);
+        }
+    }
 }

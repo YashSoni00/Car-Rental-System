@@ -1,6 +1,5 @@
-"id","make","model","year","price_per_day","is_rented"
 "1","Toyota","Corolla","2019","50","false"
 "2","Honda","Civic","2018","60","false"
 "3","Ford","Fusion","2017","70","false"
-"4","Chevrolet","Malibu","2016","80","false"
+"4","Chevrolet","Malibu","2016","80","true"
 "5","Nissan","Altima","2015","90","false"

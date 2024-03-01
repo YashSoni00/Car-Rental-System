@@ -5,19 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad6a4a53-53ce-41e3-a282-326ef1cdc504" name="Changes" comment="This car rental system in Java involves several components, such as classes for vehicles, customers, and the rental process. This code includes basic classes and methods to add cars to the system, rent a car, and return a car.">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/opencsv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/DriverCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataAccess/CarRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataAccess/CustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataAccess/DataBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Rental.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/RentalService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Car Rental System using Java.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Car Rental System using Java.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cars.csv" beforeDir="false" afterPath="$PROJECT_DIR$/cars.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/customers.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental_history.csv" beforeDir="false" afterPath="$PROJECT_DIR$/rental_history.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DriverCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DriverCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataAccess/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataAccess/CarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataAccess/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataAccess/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataAccess/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataAccess/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Car.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RentalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RentalService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +71,7 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -82,6 +80,16 @@
     </key>
   </component>
   <component name="RunAnythingCache">
+    <myKeys>
+      <visibility group="Gradle Tasks" flag="true" />
+      <visibility group="Maven Goals" flag="true" />
+      <visibility group="Recent projects" flag="true" />
+      <visibility group="Run configurations" flag="true" />
+      <visibility group="com.intellij.ide.actions.runAnything.RunAnythingRunConfigurationProvider" flag="true" />
+      <visibility group="com.intellij.ide.actions.runAnything.activity.RunAnythingRecentProjectProvider" flag="true" />
+      <visibility group="org.jetbrains.idea.maven.execution.MavenRunAnythingProvider" flag="true" />
+      <visibility group="org.jetbrains.plugins.gradle.execution.GradleRunAnythingProvider" flag="true" />
+    </myKeys>
     <option name="myCommands">
       <command value="class " />
     </option>
@@ -123,8 +131,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.CarRepository" />
         <item itemvalue="Application.DataBase" />
+        <item itemvalue="Application.CarRepository" />
       </list>
     </recent_temporary>
   </component>
@@ -160,8 +168,27 @@
       <option name="project" value="LOCAL" />
       <updated>1709193866599</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="This car rental system in Java involves several components, such as classes for vehicles, customers, and the rental process. This code includes basic classes and methods to add cars to the system, rent a car, and return a car.">
+      <option name="closed" value="true" />
+      <created>1709220421469</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709220421469</updated>
+    </task>
+    <task id="LOCAL-00004" summary="This car rental system in Java involves several components, such as classes for vehicles, customers, and the rental process. This code includes basic classes and methods to add cars to the system, rent a car, and return a car.">
+      <option name="closed" value="true" />
+      <created>1709220448568</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709220448568</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

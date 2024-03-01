@@ -5,10 +5,13 @@ import DataAccess.CustomerRepository;
 import DataAccess.DataBase;
 
 import java.util.Date;
+import java.util.Scanner;
 
 public class RentalService {
     private final CarRepository carRepository;
     private final CustomerRepository customerRepository;
+
+    Scanner scanner = new Scanner(System.in);
 
     // Constructor
     public RentalService() {
@@ -16,9 +19,15 @@ public class RentalService {
         customerRepository = new CustomerRepository();
     }
 
+    // Call the car repository to get all cars existing in the database
     public void showAllCars() {
-        // Call the car repository to get all cars
          carRepository.getAllCars();
+    }
+
+    // Method to show a list of all cars available for rent
+    public void showAvailableCars() {
+        // Call the car repository to get all available cars
+        carRepository.getAllAvailableCars();
     }
 
     // Method to rent a car
@@ -43,12 +52,12 @@ public class RentalService {
 
     // Method to return a car
 public void returnCar(String carId, String customerId) {
-        if (carRepository.getCarById(carId) != null && customerRepository.getCustomerById(customerId) != null &&
-                carRepository.isCarRented(carId)) {
-            // Update the car's status to not rented
+        if (carRepository.getCarById(carId) != null && !carRepository.isCarRented(carId) &&
+                customerRepository.getCustomerById(customerId) != null) {
+            // Update the car's status to available
             carRepository.updateCar(carId, false);
 
-            // Update the customer's rental history if needed
+            // Remove the rental from the customer's history
             customerRepository.removeRentalFromCustomer(customerId, carId);
 
             System.out.println("Car returned successfully.");
@@ -80,6 +89,58 @@ public void returnCar(String carId, String customerId) {
         carRepository.deleteCar(carId);
     }
 
+    public void addCustomer(String customerId, String customerName, String customerAddress, String customerPhone, String customerEmail) {
+        // Call the customer repository to add a customer
+        customerRepository.addCustomer(customerId, customerName, customerAddress, customerPhone, customerEmail);
+    }
+
+    public boolean validateCustomer(String customerId) {
+        if (customerRepository.getCustomerById(customerId) == null) {
+            System.out.print("Register as a new customer (y/n): ");
+
+            char choice = scanner.next().charAt(0);
+            if (choice == 'y') {
+                System.out.print("Enter your name: ");
+                String name = scanner.next();
+                System.out.print("Enter your address: ");
+                String address = scanner.next();
+                System.out.print("Enter your phone number: ");
+                String phone = scanner.next();
+                System.out.print("Enter your email: ");
+                String email = scanner.next();
+
+                addCustomer(customerId, name, address, phone, email);
+            } else {
+                System.out.println("Cannot rent or return a car without being a registered customer.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean showRentedCars(String customerId) {
+        // Code to show the cars rented by a customer
+        if (customerRepository.getCustomerById(customerId) != null) {
+            if (customerRepository.displayRentals(customerId)) {
+                return true;
+            } else {
+                System.out.println("No rentals found for customer -" + customerRepository.getCustomerById(customerId).getName());
+                return false;
+            }
+        } else {
+            System.out.println("Customer does not exist.");
+        }
+        return true;
+    }
+
+    public boolean validateCar(String carId) {
+        // Code to validate the car ID
+        if (carRepository.getCarById(carId) == null) {
+            System.out.println("Car not found");
+            return false;
+        }
+        return true;
+    }
     // Additional methods can be added for other rental-related operations
 }
 

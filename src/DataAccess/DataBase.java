@@ -29,42 +29,43 @@ public class DataBase {
     public static void addCar(Car car) {
         cars.add(new String[]{car.getId(), car.getMake(), car.getModel(), String.valueOf(car.getYear()),
                 String.valueOf(car.getPricePerDay()), String.valueOf(car.isRented())});
+        writeData("cars.csv", cars);
     }
 
     // Method to create the CSV file for the cars
     public void DefaultCarsData() {
         // Code to create the CSV file for the cars
-        cars.add(new String[]{"id", "make", "model", "year", "price_per_day", "is_rented"});
-//        cars.addAll(readData("cars.csv")); // Reading data from the CSV file
-        cars.add(new String[]{"1", "Toyota", "Corolla", "2019", "50", "false"});
-        cars.add(new String[]{"2", "Honda", "Civic", "2018", "60", "false"});
-        cars.add(new String[]{"3", "Ford", "Fusion", "2017", "70", "false"});
-        cars.add(new String[]{"4", "Chevrolet", "Malibu", "2016", "80", "false"});
-        cars.add(new String[]{"5", "Nissan", "Altima", "2015", "90", "false"});
+//        cars.add(new String[]{"id", "make", "model", "year", "price_per_day", "is_rented"});
+        cars.addAll(readData("cars.csv")); // Reading data from the CSV file
+//        cars.add(new String[]{"1", "Toyota", "Corolla", "2019", "50", "false"});
+//        cars.add(new String[]{"2", "Honda", "Civic", "2018", "60", "false"});
+//        cars.add(new String[]{"3", "Ford", "Fusion", "2017", "70", "false"});
+//        cars.add(new String[]{"4", "Chevrolet", "Malibu", "2016", "80", "false"});
+//        cars.add(new String[]{"5", "Nissan", "Altima", "2015", "90", "false"});
     }
 
 
     // Method to create the CSV file for the customers
     public void DefaultCustomerData() {
         // Code to create the CSV file for the customers
-        customers.add(new String[]{"customer_id", "name", "address", "phone_number", "email"});
-//        customers.addAll(readData("customers.csv")); // Reading data from the CSV file
-        customers.add(new String[]{"1", "John Doe", "123 Controller.Main St", "123-456-7890", "johndoe@gmail.com"});
-        customers.add(new String[]{"2", "Jane Smith", "456 Elm St", "456-789-0123", "janesmith@gmail.com"});
-        customers.add(new String[]{"3", "Tom Brown", "789 Oak St", "789-012-3456", "tombrown@gmail.com"});
-        customers.add(new String[]{"4", "Sue White", "101 Pine St", "101-112-1314", "suewhite@gmail.com"});
-        customers.add(new String[]{"5", "Mike Black", "202 Cedar St", "202-303-4041", "mikeblack@gmail.com"});
+//        customers.add(new String[]{"customer_id", "name", "address", "phone_number", "email"});
+        customers.addAll(readData("customers.csv")); // Reading data from the CSV file
+//        customers.add(new String[]{"1", "John Doe", "123 Controller.Main St", "123-456-7890", "johndoe@gmail.com"});
+//        customers.add(new String[]{"2", "Jane Smith", "456 Elm St", "456-789-0123", "janesmith@gmail.com"});
+//        customers.add(new String[]{"3", "Tom Brown", "789 Oak St", "789-012-3456", "tombrown@gmail.com"});
+//        customers.add(new String[]{"4", "Sue White", "101 Pine St", "101-112-1314", "suewhite@gmail.com"});
+//        customers.add(new String[]{"5", "Mike Black", "202 Cedar St", "202-303-4041", "mikeblack@gmail.com"});
     }
 
     public void DefaultRentalHistory() {
         // Code to create the CSV file for the rental history
-         rentalHistory.add(new String[]{"customer_id", "car_id", "rental_date", "return_date"});
-//        rentalHistory.addAll(readData("rental_history.csv")); // Reading data from the CSV file
-         rentalHistory.add(new String[]{"1", "1", "2021-01-01", "2021-01-05"});
-         rentalHistory.add(new String[]{"2", "2", "2021-01-02", "2021-01-06"});
-         rentalHistory.add(new String[]{"3", "3", "2021-01-03", "2021-01-07"});
-         rentalHistory.add(new String[]{"4", "4", "2021-01-04", "2021-01-08"});
-         rentalHistory.add(new String[]{"5", "5", "2021-01-05", "2021-01-09"});
+//         rentalHistory.add(new String[]{"customer_id", "car_id", "rental_date", "return_date"});
+        rentalHistory.addAll(readData("rental_history.csv")); // Reading data from the CSV file
+//         rentalHistory.add(new String[]{"1", "1", "2021-01-01", "2021-01-05"});
+//         rentalHistory.add(new String[]{"2", "2", "2021-01-02", "2021-01-06"});
+//         rentalHistory.add(new String[]{"3", "3", "2021-01-03", "2021-01-07"});
+//         rentalHistory.add(new String[]{"4", "4", "2021-01-04", "2021-01-08"});
+//         rentalHistory.add(new String[]{"5", "5", "2021-01-05", "2021-01-09"});
     }
 
     public static Customer getCustomerById(String customerId) {
@@ -100,6 +101,7 @@ public class DataBase {
                 break;
             }
         }
+        writeData("cars.csv", cars);
     }
 
     public static void removeCustomer(String customerId) {
@@ -152,30 +154,20 @@ public class DataBase {
         public static Car getCarById(String id) {
         for (String[] car : cars) {
             if (car[0].equals(id)) {
-                Car c = new Car(car[0], car[1], car[2], Integer.parseInt(car[3]), Double.parseDouble(car[4]), Boolean.parseBoolean(car[5]));
-                return (Car) c;
+                return new Car(car[0], car[1], car[2], Integer.parseInt(car[3]), Double.parseDouble(car[4]), Boolean.parseBoolean(car[5]));
             }
         }
         return null;
     }
 
-    public static void updateCarData(Car car) {
-        Scanner sc = new Scanner(System.in);
+    public static void updateCarData(Car car, boolean b) {
         for (String[] c : cars) {
             if (c[0].equals(car.getId())) {
-                System.out.println("Enter the updated car make: ");
-                c[1] = sc.nextLine();
-                System.out.println("Enter the updated car model: ");
-                c[2] = sc.nextLine();
-                System.out.println("Enter the updated car year: ");
-                c[3] = sc.nextLine();
-                System.out.println("Enter the updated car price per day: ");
-                c[4] = sc.nextLine();
-                System.out.println("Is the car rented? (true/false):");
-                c[5] = sc.nextLine();
+                c[5] = String.valueOf(b);
                 break;
             }
         }
+        writeData("cars.csv", cars);
     }
 
     // Main method to test the code
